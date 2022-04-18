@@ -1,6 +1,8 @@
 # EET
 
-Build and run unit tests in the [Google Earth Engine]() code editor.
+Build and run unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor.
+
+:computer: Try out the [interactive demo](https://code.earthengine.google.com/4eb068211c8b1d6acdd3e936cc26eaad).
 
 ## Quickstart
 
@@ -56,8 +58,10 @@ Assertions in `eet` are based on the [Node.js `assert` module](https://nodejs.or
 - assert.strictNotEqual(actual, expected, *message*) : Values are strictly not equal `!==`.
 - assert.exists(value, *message*) : Value is not `null` or `undefined`.
 - assert.notExists(value, *message*) : Value is `null` or `undefined`.
-- assert.match(string, regex) : String matches regex pattern.
-- assert.doesNotMatch(string, regex) : String does not match regex pattern.
+- assert.match(string, regex, *message*) : String matches regex pattern.
+- assert.doesNotMatch(string, regex, *message*) : String does not match regex pattern.
+- assert.in(value, array, *message*) : Value is in array.
+- assert.notIn(value, array, *message*) : Value is not in array.
 - assert.throws(fn, *errorLike*, *errMsgMatcher*, *message*) : Function throws error. Specify an Error-like (e.g. `ReferenceError`) to only match specific error types. Specify a regex message pattern to only match errors with a matching error message.
 
 
