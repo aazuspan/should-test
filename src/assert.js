@@ -38,6 +38,37 @@ exports.notStrictEqual = function (actual, expected, message) {
   if (actual === expected) throw new Error(message);
 };
 
+// Assert that value is neither null nor undefined
+exports.exists = function (value, message) {
+  message = message || "`" + value + "` is `null` or `undefined`.";
+  if (value === null || value === undefined) throw new Error(message);
+};
+
+// Assert that value is either null nor undefined
+exports.notExists = function (value, message) {
+  message = message || "`" + value + "` is not `null` or `undefined`.";
+  if (value !== null && value !== undefined) throw new Error(message);
+};
+
+// Assert that a string does match a regular expression.
+exports.match = function (string, regexp, message) {
+  message =
+    message ||
+    "`" + string + "` does not match pattern `" + String(regexp) + "`.";
+  regexp = regexp instanceof RegExp ? regexp : new RegExp(regexp);
+
+  if (regexp.test(string) !== true) throw new Error(message);
+};
+
+// Assert that a string does not match a regular expression.
+exports.doesNotMatch = function (string, regexp, message) {
+  message =
+    message || "`" + string + "` matches pattern `" + String(regexp) + "`.";
+  regexp = regexp instanceof RegExp ? regexp : new RegExp(regexp);
+
+  if (regexp.test(string) === true) throw new Error(message);
+};
+
 // Assert function throws error.
 exports.throws = function (fn, errorLike, errMsgMatcher, message) {
   var regexp =
@@ -76,35 +107,4 @@ exports.throws = function (fn, errorLike, errMsgMatcher, message) {
 
   message = message || "No error was thrown.";
   throw new Error(message);
-};
-
-// Assert that value is neither null nor undefined
-exports.exists = function (value, message) {
-  message = message || "`" + value + "` is `null` or `undefined`.";
-  if (value === null || value === undefined) throw new Error(message);
-};
-
-// Assert that value is either null nor undefined
-exports.notExists = function (value, message) {
-  message = message || "`" + value + "` is not `null` or `undefined`.";
-  if (value !== null && value !== undefined) throw new Error(message);
-};
-
-// Assert that a string does not match a regular expression.
-exports.doesNotMatch = function (string, regexp, message) {
-  message =
-    message || "`" + string + "` matches pattern `" + String(regexp) + "`.";
-  regexp = regexp instanceof RegExp ? regexp : new RegExp(regexp);
-
-  if (regexp.test(string) === true) throw new Error(message);
-};
-
-// Assert that a string does match a regular expression.
-exports.match = function (string, regexp, message) {
-  message =
-    message ||
-    "`" + string + "` does not match pattern `" + String(regexp) + "`.";
-  regexp = regexp instanceof RegExp ? regexp : new RegExp(regexp);
-
-  if (regexp.test(string) !== true) throw new Error(message);
 };
