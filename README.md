@@ -1,8 +1,8 @@
 # EET
 
-Build and run unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor.
-
-:computer: Try out the [interactive demo](https://code.earthengine.google.com/4eb068211c8b1d6acdd3e936cc26eaad).
+- 📋 Write and run unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor
+- ☑️ Built-in assertions for easy testing
+- 💻 Try out the [interactive demo](https://code.earthengine.google.com/4eb068211c8b1d6acdd3e936cc26eaad)
 
 ## Quickstart
 
@@ -38,7 +38,7 @@ eet.run();
 
 ![All tests passed!](assets/eet_passed.png)
 
-## Usage
+## API Reference
 
 ### Tests
 
@@ -47,9 +47,8 @@ eet.run();
 
 ### Asserts
 
-Assertions in `eet` are based on the [Node.js `assert` module](https://nodejs.org/api/assert.html) and typically follow the same format, with a couple exceptions. Note that `eet` assertions work with **client-side data only**, so use `getInfo` to compare Earth Engine objects. 
+Assertions test a specific condition and thrown an error if the condition fails. Most assertions take one or two values to compare and an optional message that will override the default error message. If you're familiar with the Node.js [`assert` module](https://nodejs.org/api/assert.html), the `eet` assertions will look very familiar, as they are generally identicial. Note that `eet` assertions work with **client-side data only**, so use `getInfo` to compare Earth Engine objects. 
 
-- assert.fail(*message*) : Automatically fail.
 - assert.ok(value, *message*) : Value is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy).
 - assert.notOk(value, *message*) : Value is [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy).
 - assert.equal(actual, expected, *message*) : Values are equal `==`.
@@ -63,6 +62,6 @@ Assertions in `eet` are based on the [Node.js `assert` module](https://nodejs.or
 - assert.in(value, array, *message*) : Value is in array.
 - assert.notIn(value, array, *message*) : Value is not in array.
 - assert.throws(fn, *errorLike*, *errMsgMatcher*, *message*) : Function throws error. Specify an Error-like (e.g. `ReferenceError`) to only match specific error types. Specify a regex message pattern to only match errors with a matching error message.
+- assert.fail(*message*) : Automatically fail.
 
 
-Every `assert` function takes an optional message as its last argument, which will override the default error message.
