@@ -69,6 +69,18 @@ exports.doesNotMatch = function (string, regexp, message) {
   if (regexp.test(string) === true) throw new Error(message);
 };
 
+// Assert value in array
+exports.in = function(value, array, message) {
+  message = message || "`" + value + "` not in `" + array + "`."
+  if (array.indexOf(value) === -1) throw new Error(message);
+}
+
+// Assert value not in array
+exports.notIn = function(value, array, message) {
+  message = message || "`" + value + "` is in `" + array + "`."
+  if (array.indexOf(value) !== -1) throw new Error(message);
+}
+
 // Assert function throws error.
 exports.throws = function (fn, errorLike, errMsgMatcher, message) {
   var regexp =
