@@ -4,6 +4,10 @@
 - ☑️ Built-in assertions for easy testing
 - 💻 Try out the [interactive demo](https://code.earthengine.google.com/4eb068211c8b1d6acdd3e936cc26eaad)
 
+## ⚠️ Note
+
+`eet` is in early development and **breaking changes are likely**! Currently asserts and tests only work with client side objects, but support for asynchronous testing of server-side objects is being explored.
+
 ## Quickstart
 
 First, import the `eet` module:
@@ -47,7 +51,7 @@ eet.run();
 
 ### Asserts
 
-Assertions test a specific condition and thrown an error if the condition fails. Most assertions take one or two values to compare and an optional message that will override the default error message. If you're familiar with the Node.js [`assert` module](https://nodejs.org/api/assert.html), the `eet` assertions will look very familiar, as they are generally identicial. Note that `eet` assertions work with **client-side data only**, so use `getInfo` to compare Earth Engine objects. 
+Assertions test a specific condition and thrown an error if the condition fails. Most assertions take one or two values to compare and an optional message that will override the default error message. If you're familiar with the Node.js [`assert` module](https://nodejs.org/api/assert.html), the `eet` assertions will look very familiar, as they are generally identicial. Note that `eet` assertions currently work with **client-side data only**, so use `getInfo` to compare Earth Engine objects. 
 
 - assert.ok(value, *message*) : Value is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy).
 - assert.notOk(value, *message*) : Value is [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy).
