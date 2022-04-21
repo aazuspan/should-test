@@ -6,10 +6,6 @@ var FAIL_COLOR = "#eb4034";
 var SUCCESS_COLOR = "#009900";
 var TEXT_COLOR = "#3b3b3b";
 var LIGHT_TEXT_COLOR = "#ababab";
-var HEADER = "\
-\n▒██▀▒██▀░▀█▀\
-\n░█▄▄░█▄▄░▒█▒"
-
 
 var startTime = Date.now();
 var displayed = false;
@@ -26,7 +22,6 @@ exports.errorsPanel = ui.Panel({style: {shown: false}});
 exports.display = function() {
   if (displayed) return;
   
-  print(HEADER);
   print(exports.summaryPanel);
   print(exports.resultsPanel);
   print(exports.errorsPanel);  
