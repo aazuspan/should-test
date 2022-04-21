@@ -20,6 +20,8 @@ should.equal(ee.Number(42), 42, "Check numbers are equal");
 
 Hit `run` and the test will evaluate and let you know if it passed ✅ or failed 🛑. Write more tests and `should-test` will run them and summarize the results, printing out any errors that occur.
 
+![Demonstration of tests running in the code editor console.](assets/should_demo.gif)
+
 # Usage
 
 ## Server and Client Objects
