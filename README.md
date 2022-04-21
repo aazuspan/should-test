@@ -79,3 +79,6 @@ should.utils.call(function() {
 });
 ```
 
+## API Reference
+
+In progress!
