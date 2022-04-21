@@ -1,4 +1,4 @@
-var UI = require("users/aazuspan/eet:src/ui.js");
+var UI = require("users/aazuspan/should:src/ui.js");
 
 // Globals
 var totalTests = 0;
