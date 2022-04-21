@@ -1,3 +1,0 @@
-// Load the core testing functions into the global namespace
-exports = require("users/aazuspan/eet:src/test.js");
-exports.assert = require("users/aazuspan/eet:src/assert.js");

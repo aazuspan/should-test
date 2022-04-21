@@ -1,71 +1,81 @@
-# EET
+# should:test
 
-- 📋 Write and run unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor
-- ☑️ Built-in assertions for easy testing
-- 💻 Try out the [interactive demo](https://code.earthengine.google.com/4eb068211c8b1d6acdd3e936cc26eaad)
-
-## ⚠️ Note
-
-`eet` is in early development and **breaking changes are likely**! Currently asserts and tests only work with client side objects, but support for asynchronous testing of server-side objects is being explored.
+- ☑️ Write one-line unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor
+- ⚙️ Evaluate client or server-side objects asynchronously
 
 ## Quickstart
 
-First, import the `eet` module:
+First, import the `should:test` module into your script.
 
 ```javascript
-var eet = require("users/aazuspan/eet:eet");
+var should = require("users/aazuspan/should:test");
 ```
 
-Then write your first test using `eet.test`. This function takes a test description (to help you keep track) and a callable function to run during testing.
+Then write your first test.
 
 ```javascript
-eet.test("Check runMyCalculation", function() {
-    var value = runMyCalculation();
-    if (value != 42) throw new Error("That should have equaled 42!");
-})
+should.equal(ee.Number(42), 42, "Check numbers are equal");
 ```
 
-As you can see, you can write your own tests from scratch by checking conditions and throwing errors, but `eet` has an `assert` module to handle common checks. Here's the same test using the assert module.
+Hit `run` and the test will evaluate and let you know if it passed ✅ or failed 🛑. Write more tests and `should:test` will run them and summarize the results, printing out any errors that occur.
+
+## Usage
+
+### Server and Client Objects
+
+Tests in `should:test` work transparently with client- and server-side objects. For example, both of the following work:
 
 ```javascript
-eet.test("Check runMyCalculation", function() {
-    var value = runMyCalculation();
-    eet.assert.equal(value, 42);
-})
+var year = 2022;
+should.beGreater(year, 2010);
 ```
-
-Once you've built all your tests, run them and display the results with `eet.run`.
 
 ```javascript
-eet.run();
+var year = ee.Image("LANDSAT/LC09/C02/T1_L2/LC09_001006_20220404").date().get("year");
+should.beGreater(year, 2010);
 ```
 
-![All tests passed!](assets/eet_passed.png)
+Tests with Earth Engine objects run asynchronously and report their results when finished, so there's no risk of freezing the browser with `getInfo`.
 
-## API Reference
+### Filtering Tests
+By default, all the tests you've called will evaluate when you run your script. To filter tests that run, call `should.settings.skip` and/or `should.settings.run` at the top of your script. These functions match a regular expression pattern against the test descriptions and skip or run accordingly.
 
-### Tests
+```javascript
+should.settings.run("band");
 
-- test(description, function) : Register a function for testing.
-- run(*pattern*) : Run tests and report the results. An optional regex pattern can be used to only run matching tests.
+should.contain(image.bandNames(), "SR_B4", "check for band"); // run
+should.beLess(collection.size(), 100, "compare size"); // skipped
+```
 
-### Asserts
+### Writing Complex Tests
+In order to run each test, the `should` assertion needs to be called. For organization, you can combine the assertion and any setup steps needed into a function and call that function, like so:
 
-Assertions test a specific condition and thrown an error if the condition fails. Most assertions take one or two values to compare and an optional message that will override the default error message. If you're familiar with the Node.js [`assert` module](https://nodejs.org/api/assert.html), the `eet` assertions will look very familiar, as they are generally identicial. Note that `eet` assertions currently work with **client-side data only**, so use `getInfo` to compare Earth Engine objects. 
+```javascript
+// Build the test
+var myTest = function() {
+    var l9 = ee.ImageCollection("LANDSAT/LC09/C02/T1_L2");
+    var geom = ee.Geometry.Point([-112.690234375, 41.13290902574011]);
+    var col = l9.filterBounds(geom);
+    var cloudless = col.filter(ee.Filter.lt("CLOUD_COVER", 1));
 
-- assert.ok(value, *message*) : Value is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy).
-- assert.notOk(value, *message*) : Value is [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy).
-- assert.equal(actual, expected, *message*) : Values are equal `==`.
-- assert.notEqual(actual, expected, *message*) : Values are not equal `!=`.
-- assert.strictEqual(actual, expected, *message*) : Values are strictly equal `===`.
-- assert.strictNotEqual(actual, expected, *message*) : Values are strictly not equal `!==`.
-- assert.exists(value, *message*) : Value is not `null` or `undefined`.
-- assert.notExists(value, *message*) : Value is `null` or `undefined`.
-- assert.match(string, regex, *message*) : String matches regex pattern.
-- assert.doesNotMatch(string, regex, *message*) : String does not match regex pattern.
-- assert.in(value, array, *message*) : Value is in array.
-- assert.notIn(value, array, *message*) : Value is not in array.
-- assert.throws(fn, *errorLike*, *errMsgMatcher*, *message*) : Function throws error. Specify an Error-like (e.g. `ReferenceError`) to only match specific error types. Specify a regex message pattern to only match errors with a matching error message.
-- assert.fail(*message*) : Automatically fail.
+    should.beGreater(cloudless.size(), 100, "check # of cloud-free images");
+};
 
+// Run the test
+myTest();
+```
+
+For convenience, you can skip naming and calling your test function using `should.utils.call`, like so:
+
+```javascript
+// Build and run the test
+should.utils.call(function() {
+    var l9 = ee.ImageCollection("LANDSAT/LC09/C02/T1_L2");
+    var geom = ee.Geometry.Point([-112.690234375, 41.13290902574011]);
+    var col = l9.filterBounds(geom);
+    var cloudless = col.filter(ee.Filter.lt("CLOUD_COVER", 1));
+
+    should.beGreater(cloudless.size(), 100, "check # of cloud-free images");
+});
+```
 
