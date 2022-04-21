@@ -27,12 +27,12 @@ Tests in `should:test` work transparently with client- and server-side objects. 
 
 ```javascript
 var year = 2022;
-should.beGreater(year, 2010);
+should.beGreater(year, 2010, "Check client-side year");
 ```
 
 ```javascript
 var year = ee.Image("LANDSAT/LC09/C02/T1_L2/LC09_001006_20220404").date().get("year");
-should.beGreater(year, 2010);
+should.beGreater(year, 2010, "Check server-side year");
 ```
 
 Tests with Earth Engine objects run asynchronously and report their results when finished, so there's no risk of freezing the browser with `getInfo`.
@@ -56,9 +56,9 @@ var myTest = function() {
     var l9 = ee.ImageCollection("LANDSAT/LC09/C02/T1_L2");
     var geom = ee.Geometry.Point([-112.690234375, 41.13290902574011]);
     var col = l9.filterBounds(geom);
-    var cloudless = col.filter(ee.Filter.lt("CLOUD_COVER", 1));
+    var cloudless = col.filter(ee.Filter.lt("CLOUD_COVER", 5));
 
-    should.beGreater(cloudless.size(), 100, "check # of cloud-free images");
+    should.beGreater(cloudless.size(), 1, "check # of cloud-free images");
 };
 
 // Run the test
@@ -73,9 +73,9 @@ should.utils.call(function() {
     var l9 = ee.ImageCollection("LANDSAT/LC09/C02/T1_L2");
     var geom = ee.Geometry.Point([-112.690234375, 41.13290902574011]);
     var col = l9.filterBounds(geom);
-    var cloudless = col.filter(ee.Filter.lt("CLOUD_COVER", 1));
+    var cloudless = col.filter(ee.Filter.lt("CLOUD_COVER", 5));
 
-    should.beGreater(cloudless.size(), 100, "check # of cloud-free images");
+    should.beGreater(cloudless.size(), 1, "check # of cloud-free images");
 });
 ```
 
