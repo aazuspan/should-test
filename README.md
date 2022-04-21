@@ -1,7 +1,8 @@
 # should-test
 
 - ☑️ Write one-line unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor
-- ⚙️ Evaluate client or server-side objects asynchronously
+- ⏱️ Evaluate client or server-side objects asynchronously
+- 🏃 Run the interactive [demo script](https://code.earthengine.google.com/d5309955cc7d2e7c0ab0dee9bd156d30) in the code editor
 
 # Quickstart
 
