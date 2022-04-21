@@ -1,6 +1,6 @@
 // Test the tests
 
-var should = require("users/aazuspan/testing:should");
+var should = require("users/aazuspan/should:test");
 
 // should.run("pass")
 // should.skip("pass")
