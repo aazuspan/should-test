@@ -122,32 +122,32 @@ Assertions test a condition and fail when false. All assertions take a `descript
 
 To use a comparison assertion, Earth Engine objects must implement the corresponding operator, e.g. `eq`, `neq`, `gt`, etc.
 
-- `should.beTrue(value, description)`
-- `should.beFalse(value, description)`
-- `should.equal(actual, expected, description)`
-- `should.notEqual(actual, expected, description)`
-- `should.beGreater(value, other, description)`
-- `should.beGreaterOrEqual(value, other, description)`
-- `should.beLess(value, other, description)`
-- `should.beLessOrGreater(value, other, description)`
+- `should.beTrue(value, description)`: The `value` should be true (strict for JS objects).
+- `should.beFalse(value, description)`: The `value` should be false (strict for JS objects).
+- `should.equal(actual, expected, description)`: The `actual` should equal the expected.
+- `should.notEqual(actual, expected, description)`: The `actual` should not equal the `expected`.
+- `should.beGreater(value, other, description)`: The `value` should be greater than `other`.
+- `should.beGreaterOrEqual(value, other, description)`: The `value` should be greater than or equal to `other`.
+- `should.beLess(value, other, description)`: The `value` should be less than `other`.
+- `should.beLessOrEqual(value, other, description)`: The `value` should be less than or equal to `other`.
 
 ### Other
 
-- `should.match(string, pattern, description)`
-- `should.notMatch(string, pattern, description)`
-- `should.contain(list, value, description)`
-- `should.notContain(list, value, description)`
+- `should.match(string, pattern, description)`: The regex `pattern` should match the `string`. 
+- `should.notMatch(string, pattern, description)`: The regex `pattern` should not match the `string`. 
+- `should.contain(list, value, description)`: The `list` should contain the `value`.
+- `should.notContain(list, value, description)` The `list` should not contain the `value`.
 
 ### Functions
 
-- `should.throw(function, description)`
-- `should.notThrow(function, description)`
+- `should.throw(function, description)`: Calling `function` should throw an error.
+- `should.notThrow(function, description)`: Calling `function` should not throw an error.
 
 ### Settings
 
-- `should.settings.skip(pattern)`:
-- `should.settings.run(pattern)`
+- `should.settings.skip(pattern)`: Tests with descriptions that match the regex `pattern` are skipped.
+- `should.settings.run(pattern)`: Only tests with descriptions that match the regex `pattern` are run.
 
 ### Utilities
 
-- `should.utils.call(func)`
+- `should.utils.call(func)`: Call `func`. Handy for wrapping anonymous functions.
