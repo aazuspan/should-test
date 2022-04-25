@@ -1,8 +1,11 @@
 # should-test
 
+[![Earth Engine Javascript](https://img.shields.io/badge/Earth%20Engine%20API-Javascript-red)](https://developers.google.com/earth-engine/tutorials/tutorial_api_01)
+[![Open in Code Editor](https://img.shields.io/badge/Open%20in-Code%20Editor-9cf)](https://code.earthengine.google.com/d5309955cc7d2e7c0ab0dee9bd156d30)
+
+
 - ☑️ Write one-line unit tests in the [Google Earth Engine](https://earthengine.google.com/) code editor
 - ⏱️ Evaluate client or server-side objects asynchronously
-- 🏃 Run the interactive [demo script](https://code.earthengine.google.com/d5309955cc7d2e7c0ab0dee9bd156d30) in the code editor
 
 # Quickstart
 
