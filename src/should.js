@@ -97,7 +97,7 @@ exports.equal = function (actual, expected, description) {
     ? actual.eq(expected)
     : isEEObject(expected)
     ? expected.eq(actual)
-    : actual === expected;
+    : JSON.stringify(actual) === JSON.stringify(expected);
   var message = actual + " not equal to " + expected;
   evaluateAssert(condition, message, description);
 };
@@ -108,7 +108,7 @@ exports.notEqual = function (actual, expected, description) {
     ? actual.neq(expected)
     : isEEObject(expected)
     ? expected.neq(actual)
-    : actual !== expected;
+    : JSON.stringify(actual) !== JSON.stringify(expected);
   var message = actual + " equal to " + expected;
   evaluateAssert(condition, message, description);
 };
