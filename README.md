@@ -131,6 +131,7 @@ To use a comparison assertion, Earth Engine objects must implement the correspon
 - `should.beFalse(value, description)`: The `value` should be false (strict for JS objects).
 - `should.equal(actual, expected, description)`: The `actual` should equal the expected.
 - `should.notEqual(actual, expected, description)`: The `actual` should not equal the `expected`.
+- `should.almostEqual(actual, expected, description, error)`: The `actual` should be within a relative `error` (default `1e-6`) of the `expected`.
 - `should.beGreater(value, other, description)`: The `value` should be greater than `other`.
 - `should.beGreaterOrEqual(value, other, description)`: The `value` should be greater than or equal to `other`.
 - `should.beLess(value, other, description)`: The `value` should be less than `other`.

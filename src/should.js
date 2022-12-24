@@ -113,6 +113,18 @@ exports.notEqual = function (actual, expected, description) {
   evaluateAssert(condition, message, description);
 };
 
+// Values should be nearly equal, compared to allowable relative error
+exports.almostEqual = function (actual, expected, description, error) {
+  error = error || 1e-6;
+  var condition = isEEObject(actual)
+    ? actual.subtract(expected).divide(actual).lt(error)
+    : isEEObject(expected)
+    ? expected.subtract(actual).divide(actual).lt(error)
+    : (actual - expected) / actual < error;
+  var message = actual + " not almost equal to " + expected;
+  evaluateAssert(condition, message, description);
+};
+
 // Value should be greater than other
 exports.beGreater = function (value, other, description) {
   var condition = isEEObject(value)
