@@ -1,0 +1,9 @@
+{
+    "name": "should-test",
+    "version": "0.0.2",
+    "description": "Unit tests in the Earth Engine Code Editor.",
+    "main": "src/should.js",
+    "scripts": {
+        "bundle": "minee --entry users/aazuspan/should:src/should.js --dest test --keep-names" 
+    }
+}
