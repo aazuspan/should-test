@@ -226,7 +226,7 @@ exports.notMatch = function (string, pattern, description) {
 // Asset should exist
 exports.exist = function (assetID, description) {
   ee.data.getAsset(assetID, function(result, err) {
-    var condition = result !== null;
+    var condition = result !== undefined && err === undefined;
     var message = assetID + " does not exist";
     evaluateAssert(condition, message, description);
   })
@@ -234,7 +234,7 @@ exports.exist = function (assetID, description) {
 
 exports.bePublic = function (assetID, description) {
   ee.data.getAssetAcl(assetID, function(result, err) {
-    var condition = result !== null && result.all_users_can_read === true;
+    var condition = result !== undefined && result.all_users_can_read === true;
     var message = assetID + " is not public";
     evaluateAssert(condition, message, description);
   })
