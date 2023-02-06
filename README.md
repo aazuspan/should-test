@@ -149,6 +149,11 @@ To use a comparison assertion, Earth Engine objects must implement the correspon
 - `should.throw(function, description)`: Calling `function` should throw an error.
 - `should.notThrow(function, description)`: Calling `function` should not throw an error.
 
+### Assets
+
+- `should.exist(assetID, description)`: The asset should exist.
+- `should.bePublic(assetID, description)`: The asset should be public. Only usable by the asset owner or writer.
+
 ### Settings
 
 - `should.settings.skip(pattern)`: Tests with descriptions that match the regex `pattern` are skipped.

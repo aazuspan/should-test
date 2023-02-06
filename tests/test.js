@@ -49,3 +49,8 @@ should.throw(function() {  }, "Throw fails")
 should.throw(function() { throw new Error() }, "Throw passes")
 should.notThrow(function() { ee.Image.size() }, "notThrow fails")
 should.notThrow(function() {  }, "notThrow passes")
+
+should.exist("projects/ee-aazuspan/assets/snazzy/styles", "exist passes")
+should.exist("projects/ee-aazuspan/assets/snazzy/styles____", "exist fails")
+should.exist("projects/ee-aazuspan/assets/snazzy/styles", "bePublic passes")
+should.exist("projects/ee-aazuspan/assets/snazzy/styles____", "bePublic fails")
